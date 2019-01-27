@@ -2,7 +2,23 @@ version: '3'
 services:
   web:
     build: ./env
+    links:
+        - db
     ports:
-     - "5000:5000"
+        - "5000:5000"
     volumes:
-     - .:/src
+        - .:/src
+  db:
+    build: ./db
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./dbdata:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+    networks:
+        - apisfdev_default
+
+networks:
+  apisfdev_default:
+    driver: bridge
