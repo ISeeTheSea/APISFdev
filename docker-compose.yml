@@ -8,6 +8,8 @@ services:
         - "5000:5000"
     volumes:
         - .:/src
+    networks:
+        - apisfdev_default
   db:
     build: ./db
     ports:
@@ -15,7 +17,9 @@ services:
     volumes:
         - ./dbdata:/var/lib/mysql
     environment:
-        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_ROOT_PASSWORD=raiz
+        - MYSQL_USER=webmonkey 
+        - MYSQL_PASSWORD=webmonkeypass
     networks:
         - apisfdev_default
 
