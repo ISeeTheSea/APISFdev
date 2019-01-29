@@ -22,6 +22,9 @@ for db  in "${enabled_envs[@]}"
 do
 	echo "Creating database $db_prefix$db"
 	mysql --default-character-set=utf8 -uroot -p$MYSQL_ROOT_PASSWORD <<<"create database $db_prefix$db;"
+	
+	echo "GRANTing use permissions to $db_prefix$db"
+	mysql --default-character-set=utf8 -uroot -$MYSQL_ROOT_PASSWORD "$db_prefix$db" < "GRANT ALL ON $db_prefix$db TO 'dbwdev'@'%';"
 
 	echo "Applying common schema"
 	mysql --default-character-set=utf8 -uroot -p$MYSQL_ROOT_PASSWORD "$db_prefix$db" < /opt/common-schema.sql
