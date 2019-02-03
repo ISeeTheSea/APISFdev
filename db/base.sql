@@ -12,7 +12,11 @@
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 
-CREATE TABLE `admin` (
+CREATE DATABASE IF NOT EXISTS apisf_db;
+
+USE apisf_db;
+
+CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) NOT NULL,
@@ -25,6 +29,10 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`id_admin`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT IGNORE INTO admin (id_admin,email,password,firstname,lastname,picture,status,create_date,modify_date) VALUES 
+(1,'admin@apisf.com','48f074c5a644e37973aa85c027ca055a7fe5c3f08f5cbb79874e981d078af45d$2a$08$A9bgZWiLwA8dXIztAtJyqg$','Dev','Admin',NULL,1,'2017-05-19 17:00:00.000',NULL);
+
 
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
