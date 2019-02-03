@@ -10,6 +10,5 @@ ENV MYSQL_DATABASE=apisf_db \
     MYSQL_USER=dbwdev \
     MYSQL_PASSWORD=dbwdevpass
 
-COPY init-files/ /opt
 ADD base.sql /docker-entrypoint-initdb.d
 
